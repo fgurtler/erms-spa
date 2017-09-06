@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react'
 import AppBar from './components/AppBar'
 import LandingPage from './components/LandingPage'
+import Ingredients from './components/Ingredients'
 import SampleModule from './components/SampleModule'
 import './App.css';
 
@@ -17,13 +18,15 @@ class App extends React.Component {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column>
-                        <Route path="/ingredients" component={SampleModule} />
-                        <Route path="/recipes" component={SampleModule} />
-                        <Route path="/menuPlans" component={SampleModule} />
-                        <Route path="/deliveries" component={SampleModule} />
-                        <Route path="/documents/search" component={SampleModule} />
-                        <Route path="/documents/upload" component={SampleModule} />
-                        <Route path="/" exact component={LandingPage} />
+                        <Switch>
+                            <Route path="/ingredients" component={Ingredients} />
+                            <Route path="/recipes" component={SampleModule} />
+                            <Route path="/menuPlans" component={SampleModule} />
+                            <Route path="/deliveries" component={SampleModule} />
+                            <Route path="/documents/search" component={SampleModule} />
+                            <Route path="/documents/upload" component={SampleModule} />
+                            <Route component={LandingPage} />
+                        </Switch>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
