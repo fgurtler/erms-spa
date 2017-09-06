@@ -1,0 +1,12 @@
+#AppBar {
+  /*background-color: #00adef;
+  color: white;*/
+}
+
+#brand {
+  color: rgb(77, 77, 77);
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+  padding-left: 14px;
+}
