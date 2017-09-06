@@ -286,6 +286,10 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
+auto-breadcrumb@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/auto-breadcrumb/-/auto-breadcrumb-1.3.0.tgz#d240b62c09d951f9a82973bd0048c141893838ac"
+
 autoprefixer@7.1.2:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-7.1.2.tgz#fbeaf07d48fd878e0682bf7cbeeade728adb2b18"
@@ -5056,6 +5060,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-data-grid@^2.0.58:
+  version "2.0.58"
+  resolved "https://registry.yarnpkg.com/react-data-grid/-/react-data-grid-2.0.58.tgz#83946bf9cc34d144552349c343e15888c2c6293c"
 
 react-dev-utils@^4.0.1:
   version "4.0.1"
