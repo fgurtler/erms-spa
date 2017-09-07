@@ -4,7 +4,6 @@ import Breadcrumbs from './Breadcrumbs';
 import IngredientGrid from './IngredientGrid'
 import IngredientDetails from './IngredientDetails'
 
-/* Throwaway code */
 class Ingredients extends Component {
     render() {
         return (
@@ -16,7 +15,6 @@ class Ingredients extends Component {
             </div>
         );
     }
-
 }
 
 export default Ingredients;

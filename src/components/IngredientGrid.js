@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDataGrid from 'react-data-grid';
-import Ingredients from '../data/ingredients'
 import TextFilter from './gridFilters/TextFilter'
 import NumericFilter from './gridFilters/NumericFilter'
 import { Filters, Data } from 'react-data-grid-addons';
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux';
 
 class EmptyToolbar extends React.Component {
     componentDidMount() { this.props.onToggleFilter() }
@@ -21,7 +21,7 @@ class LinkCell extends React.Component {
     }
 }
 
-export default class IngredientGrid extends React.Component {
+class IngredientGrid extends React.Component {
 
     constructor(props) {
         super(props);
@@ -74,14 +74,13 @@ export default class IngredientGrid extends React.Component {
                 resizable: true,
             },
         ]
-        this.Ingredients = Ingredients;
         this.rowGetter = this.rowGetter.bind(this);
         this.handleGridSort = this.handleGridSort.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
         this.getRows = this.getRows.bind(this);
         this.getValidFilterValues = this.getValidFilterValues.bind(this);
         //this.state = { rows: Ingredients, filters: {}, sortColumn: 'unrs', sortDirection: 'ASC' };
-        this.state = { rows: Ingredients, filters: {}, sortColumn: '', sortDirection: '' };
+        this.state = { rows: this.props.ingredients, filters: {}, sortColumn: '', sortDirection: '' };
 
     }
 
@@ -134,3 +133,10 @@ export default class IngredientGrid extends React.Component {
 
 }
 
+function mapStateToProps(state, ownProps){
+    return {
+        ingredients: state.ingredients
+    };
+}
+
+export default connect(mapStateToProps)(IngredientGrid); 

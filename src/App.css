@@ -11,6 +11,6 @@
   padding-left: 14px;
 }
 
-.react-grid-HeaderCell input {
-  width: 100%;
+.hidden {
+  visibility:hidden;
 }
