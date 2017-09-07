@@ -10,3 +10,7 @@
   letter-spacing: -0.96px;
   padding-left: 14px;
 }
+
+.react-grid-HeaderCell input {
+  width: 100%;
+}

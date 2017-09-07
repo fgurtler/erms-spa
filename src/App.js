@@ -5,6 +5,7 @@ import AppBar from './components/AppBar'
 import LandingPage from './components/LandingPage'
 import Ingredients from './components/Ingredients'
 import SampleModule from './components/SampleModule'
+
 import './App.css';
 
 class App extends React.Component {

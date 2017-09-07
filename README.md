@@ -17,7 +17,12 @@ Those contribute to an embarassing user experience.
 
 ## Modules
 * Ingredients
-	* Need a grid ( [react-data-grid](http://adazzle.github.io/react-data-grid/) ? )
+	* Column filter using Semantic UI dropdown 
+	* Add group id, group name, subgroup name to the ingredient projection
+	* Cascading drop downs for group -> subgroup
+	* Better column spacing?
+	* Save the filters to state
+	* Initial sort doesnt apply icon to header
 * Recipes
 	* proof of concept for outgoing queue of edits
 	* will display green (OK), yellow (queued), red (errors)
@@ -39,3 +44,10 @@ Those contribute to an embarassing user experience.
 * redux-persist and [redux-offline](https://github.com/jevakallio/redux-offline/)
 * [CQRS in occasionally connected systems](https://skillsmatter.com/skillscasts/1980-cqrs-not-just-for-server-systems)
 * [Offline support](https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-3-offline-support-and-network-resilience-c84db889162c)
+
+## Controls to look at 
+* [react-data-grid](http://adazzle.github.io/react-data-grid/) 
+* react-table 
+* griddle 
+* [ag-Grid](https://www.ag-grid.com/)
+* https://reactabular.js.org/
