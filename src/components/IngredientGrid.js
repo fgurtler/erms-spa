@@ -5,6 +5,7 @@ import NumericFilter from './gridFilters/NumericFilter'
 import { Filters, Data } from 'react-data-grid-addons';
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux';
+import * as gridActions from '../actions/gridActions';
 
 class EmptyToolbar extends React.Component {
     componentDidMount() { this.props.onToggleFilter() }
@@ -80,7 +81,7 @@ class IngredientGrid extends React.Component {
         this.getRows = this.getRows.bind(this);
         this.getValidFilterValues = this.getValidFilterValues.bind(this);
         //this.state = { rows: Ingredients, filters: {}, sortColumn: 'unrs', sortDirection: 'ASC' };
-        this.state = { rows: this.props.ingredients, filters: {}, sortColumn: '', sortDirection: '' };
+        //this.state = { rows: this.props.ingredients, filters: this.props.filters, sortColumn: this.props.sortColumn, sortDirection: this.props.sortDirection };
 
     }
 
@@ -109,25 +110,25 @@ class IngredientGrid extends React.Component {
     }
 
     getRows() {
-        return Data.Selectors.getRows(this.state);
+        return Data.Selectors.getRows(this.props);
     }
 
     handleGridSort(sortColumn, sortDirection) {
-        this.setState({ sortColumn: sortColumn, sortDirection: sortDirection });
+        this.props.sort(sortColumn,sortDirection);
     }
 
     handleFilterChange(filter) {
-        let newFilters = Object.assign({}, this.state.filters);
+        let newFilters = Object.assign({}, this.props.filters);
         if (filter.filterTerm) {
             newFilters[filter.column.key] = filter;
         } else {
             delete newFilters[filter.column.key];
         }
-        this.setState({ filters: newFilters });
+        this.props.filter(newFilters);
     }
 
     getValidFilterValues(columnId) {
-        let values = this.state.rows.map(r => r[columnId]);
+        let values = this.props.rows.map(r => r[columnId]);
         return values.filter((item, i, a) => { return i === a.indexOf(item); });
     }
 
@@ -135,8 +136,18 @@ class IngredientGrid extends React.Component {
 
 function mapStateToProps(state, ownProps){
     return {
-        ingredients: state.ingredients
+        rows: state.ingredients,
+        filters: state.grids.ingredients.filters,
+        sortColumn: state.grids.ingredients.sortColumn,
+        sortDirection: state.grids.ingredients.sortDirection,
     };
 }
 
-export default connect(mapStateToProps)(IngredientGrid); 
+function mapDispatchToProps(dispatch){
+    return {
+        sort: (sortColumn, sortDirection) => dispatch(gridActions.sortIngredientsGrid(sortColumn, sortDirection)),
+        filter: filters => dispatch(gridActions.filterIngredientsGrid(filters)) 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientGrid); 
