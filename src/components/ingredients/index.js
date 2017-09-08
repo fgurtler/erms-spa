@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router-dom';
-import Breadcrumbs from './Breadcrumbs';
+import Breadcrumbs from '../Breadcrumbs';
 import IngredientGrid from './IngredientGrid'
 import IngredientDetails from './IngredientDetails'
 
@@ -9,7 +9,6 @@ class Ingredients extends Component {
         return (
             <div>
                 <Breadcrumbs pathname={this.props.location.pathname}/>
-                <div>&nbsp;</div>
                 <Route path="/ingredients/:id" component={IngredientDetails} />
                 <Route path="/ingredients" exact component={IngredientGrid} />
             </div>

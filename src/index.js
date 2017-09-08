@@ -5,13 +5,14 @@ import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store/configureStore';
 
 import ingredients from './data/ingredients';
+import recipes from './data/recipes';
 
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = configureStore({ingredients, recipes:[]});
+const store = configureStore({ingredients, recipes});
 
 ReactDOM.render(
     <Provider store={store}>

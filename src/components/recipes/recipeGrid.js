@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDataGrid from 'react-data-grid';
-import TextFilter from './gridFilters/TextFilter'
-import NumericFilter from './gridFilters/NumericFilter'
+import TextFilter from '../gridFilters/TextFilter'
+import NumericFilter from '../gridFilters/NumericFilter'
 import { Filters, Data } from 'react-data-grid-addons';
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux';
-import * as gridActions from '../actions/gridActions';
+import * as gridActions from '../../actions/gridActions';
 
 class EmptyToolbar extends React.Component {
     componentDidMount() { this.props.onToggleFilter() }
@@ -17,19 +17,19 @@ class EmptyToolbar extends React.Component {
 class LinkCell extends React.Component {
     render() {
         return (
-            <Link to={"/ingredients/" + this.props.value}>{this.props.value}</Link>
+            <Link to={"/recipes/" + this.props.value}>{this.props.value}</Link>
         );
     }
 }
 
-class IngredientGrid extends React.Component {
+class RecipeGrid extends React.Component {
 
     constructor(props) {
         super(props);
         this._columns = [
             {
-                key: 'unrs',
-                name: 'UNRS Code',
+                key: 'id',
+                name: 'ID',
                 sortable: true,
                 filterable: true,
                 filterRenderer: TextFilter,
@@ -38,18 +38,26 @@ class IngredientGrid extends React.Component {
             },
             {
                 key: 'name',
-                name: 'Ingredient',
+                name: 'Recipe',
                 sortable: true,
                 filterable: true,
                 filterRenderer: TextFilter,
                 resizable: true,
             },
             {
-                key: 'unrs_group',
-                name: 'Group',
+                key: 'yield',
+                name: 'Yield',
                 sortable: true,
                 filterable: true,
-                filterRenderer: Filters.SingleSelectFilter,
+                filterRenderer: NumericFilter,
+                resizable: true,
+            },
+            {
+                key: 'calories',
+                name: 'Calories per serving',
+                sortable: true,
+                filterable: true,
+                filterRenderer: NumericFilter,
                 resizable: true,
             }, /*
             {
@@ -59,19 +67,43 @@ class IngredientGrid extends React.Component {
                 width: 80
             }, */
             {
-                key: 'uom',
-                name: 'Unit of Measure',
+                key: 'weekly_serving',
+                name: 'Meal type',
                 sortable: true,
                 filterable: true,
                 filterRenderer: Filters.SingleSelectFilter,
                 resizable: true,
             },
             {
-                key: 'calories',
-                name: 'Calories per unit of measure',
+                key: 'sub_meal_type_id',
+                name: 'Serving Type',
                 sortable: true,
                 filterable: true,
-                filterRenderer: NumericFilter,
+                filterRenderer: Filters.SingleSelectFilter,
+                resizable: true,
+            },
+            {
+                key: 'rel_req_id',
+                name: 'Religious Requirement',
+                sortable: true,
+                filterable: true,
+                filterRenderer: Filters.SingleSelectFilter,
+                resizable: true,
+            },   
+             {
+                key: 'dietary_req_id',
+                name: 'Dietary Restriction',
+                sortable: true,
+                filterable: true,
+                filterRenderer: Filters.SingleSelectFilter,
+                resizable: true,
+            },
+            {
+                key: 'status',
+                name: 'Status',
+                sortable: true,
+                filterable: true,
+                filterRenderer: Filters.SingleSelectFilter,
                 resizable: true,
             },
         ]
@@ -136,18 +168,18 @@ class IngredientGrid extends React.Component {
 
 function mapStateToProps(state, ownProps){
     return {
-        rows: state.ingredients,
-        filters: state.grids.ingredients.filters,
-        sortColumn: state.grids.ingredients.sortColumn,
-        sortDirection: state.grids.ingredients.sortDirection,
+        rows: state.recipes,
+        filters: state.grids.recipes.filters,
+        sortColumn: state.grids.recipes.sortColumn,
+        sortDirection: state.grids.recipes.sortDirection,
     };
 }
 
 function mapDispatchToProps(dispatch){
     return {
-        sort: (sortColumn, sortDirection) => dispatch(gridActions.sortIngredientsGrid(sortColumn, sortDirection)),
-        filter: filters => dispatch(gridActions.filterIngredientsGrid(filters)) 
+        sort: (sortColumn, sortDirection) => dispatch(gridActions.sortRecipesGrid(sortColumn, sortDirection)),
+        filter: filters => dispatch(gridActions.filterRecipesGrid(filters)) 
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IngredientGrid); 
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeGrid); 

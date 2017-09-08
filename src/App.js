@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react'
 import AppBar from './components/AppBar'
 import LandingPage from './components/LandingPage'
-import Ingredients from './components/Ingredients'
+import Ingredients from './components/ingredients'
+import Recipes from './components/recipes'
 import SampleModule from './components/SampleModule'
 
 import './App.css';
@@ -21,7 +22,7 @@ class App extends React.Component {
                     <Grid.Column>
                         <Switch>
                             <Route path="/ingredients" component={Ingredients} />
-                            <Route path="/recipes" component={SampleModule} />
+                            <Route path="/recipes" component={Recipes} />
                             <Route path="/menuPlans" component={SampleModule} />
                             <Route path="/deliveries" component={SampleModule} />
                             <Route path="/documents/search" component={SampleModule} />
